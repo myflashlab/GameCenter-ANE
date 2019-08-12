@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/32.0">
+  <id>com.doitflash.gameCenter</id>
+  <versionNumber>0.0.11</versionNumber>
+  <supportedProfiles>mobileDevice</supportedProfiles>
+  <filename>exGameCenter</filename>
+  <name>Game Center</name>
+  <iPhone>
+
+	 <InfoAdditions><![CDATA[
+	
+		<!--iOS 10.0 or higher can support this ANE-->
+		<key>MinimumOSVersion</key>
+		<string>10.0</string>
+		 
+		<key>UIPrerenderedIcon</key>
+		<true/>
+			
+		<key>UIStatusBarStyle</key>
+		<string>UIStatusBarStyleBlackOpaque</string>
+			
+		<key>UIRequiresPersistentWiFi</key>
+		<string>NO</string>
+	
+		<key>UIDeviceFamily</key>
+		<array>
+			<string>1</string>
+			<string>2</string>
+		</array>
+		
+	]]></InfoAdditions>
+    <requestedDisplayResolution>high</requestedDisplayResolution>
+
+      <Entitlements>
+          <![CDATA[
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <key>keychain-access-groups</key>
+            <array>
+                <string>12AB3CD4EF.*</string>
+            </array>
+
+            <!-- set to 'true' when debugging your app and set to 'false' when building for adhoc or distribution -->
+            <key>get-task-allow</key>
+            <true/>
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <key>application-identifier</key>
+            <string>12AB3CD4EF.com.doitflash.gameCenter</string>
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <!-- could be .* or .com.doitflash.gameCenter -->
+            <key>com.apple.developer.ubiquity-kvstore-identifier</key>
+            <string>12AB3CD4EF.*</string>
+
+            <!-- must be an array of string including CloudDocuments, CloudKit, by default it's <string>*</string> which is wrong -->
+            <key>com.apple.developer.icloud-services</key>
+            <array>
+                <string>CloudDocuments</string>
+                <string>CloudKit</string>
+            </array>
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <key>com.apple.developer.icloud-container-environment</key>
+            <array>
+                <string>Development</string>
+                <string>Production</string>
+            </array>
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <key>com.apple.developer.icloud-container-identifiers</key>
+            <array>
+                <string>iCloud.com.doitflash.gameCenter</string>
+            </array>
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <key>com.apple.developer.icloud-container-development-container-identifiers</key>
+            <array>
+                <string>iCloud.com.doitflash.gameCenter</string>
+            </array>
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <!-- iCloud container identifiers -->
+            <key>com.apple.developer.ubiquity-container-identifiers</key>
+            <array>
+                <string>iCloud.com.doitflash.gameCenter</string>
+            </array>
+
+            <!-- 
+                Open your .mobileprovision file with a text editor and copy the value
+                just like the value you see on the provision file
+            -->
+            <key>com.apple.developer.team-identifier</key>
+            <string>12AB3CD4EF</string>
+
+            <!-- set to 'development' when debugging your app and set to 'production' when building for adhoc or distribution -->
+            <key>aps-environment</key>
+            <string>development</string>
+
+            <!-- This key is required only when you are trying to upload your binary to itunesConnect for beta testing -->
+            <!--<key>beta-reports-active</key>
+            <false/>-->
+
+        ]]></Entitlements>
+
+  </iPhone>
+	
+	
+  <initialWindow>
+    <title>exGameCenter</title>
+    <content>ex.swf</content>
+    <visible>true</visible>
+    <fullScreen>false</fullScreen>
+    <autoOrients>true</autoOrients>
+    <!--<aspectRatio>portrait</aspectRatio>-->
+    <renderMode>gpu</renderMode>
+    <!--<depthAndStencil>true</depthAndStencil>-->
+    <!-- required for 3D -->
+    <systemChrome>standard</systemChrome>
+  </initialWindow>
+  <icon>
+        <image36x36>icons/icon_36.png</image36x36>
+        <image48x48>icons/icon_48.png</image48x48>
+        <image72x72>icons/icon_72.png</image72x72>
+        <image96x96>icons/icon_96.png</image96x96>
+        <image144x144>icons/icon_144.png</image144x144>
+        <image192x192>icons/icon_192.png</image192x192>
+        <image512x512>icons/icon_512.png</image512x512>
+        <image1024x1024>icons/icon_1024.png</image1024x1024>
+    </icon>
+  <extensions>
+	
+	<extensionID>com.myflashlab.air.extensions.gameCenter</extensionID>
+	
+	<!-- dependency ANEs https://github.com/myflashlab/common-dependencies-ANE -->
+	<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
+
+  </extensions>
+</application>
