@@ -18,12 +18,53 @@ Create experiences that keep players coming back to your game. Add leaderboards,
 For the complete AS3 code usage, see the [demo project here](https://github.com/myflashlab/GameCenter-ANE/tree/master/AIR/src).
 
 ```actionscript
+import com.myflashlab.air.extensions.gameCenter.*;
+import com.myflashlab.air.extensions.dependency.OverrideAir;
+
+GameCenter.init();
+GameCenter.localPlayer.observeAuthentication(function ():void
+{
+	trace("auth state changed! isAuthenticated: " + GameCenter.localPlayer.isAuthenticated);
+});
+
+GameCenter.localPlayer.authenticate(function ($isAuthenticated:Boolean, $error:String):void
+{
+	if($error)
+	{
+		trace("authenticate error: " + $error);
+	}
+			
+	if($isAuthenticated)
+	{
+		trace("displayName: " + 		GameCenter.localPlayer.displayName);
+		trace("alias: " + 				GameCenter.localPlayer.alias);
+		trace("playerID: " + 			GameCenter.localPlayer.playerID);
+		trace("isAuthenticated: "+		GameCenter.localPlayer.isAuthenticated);
+		trace("isUnderage: " + 		GameCenter.localPlayer.isUnderage);
+				
+		loadDefaultLeaderboard();
+	}
+});
+
+function loadDefaultLeaderboard():void
+{
+	GameCenter.localPlayer.loadDefaultLeaderboardId(function ($leaderboardId:String, $error:String):void
+	{
+		if($leaderboardId) trace("loadDefaultLeaderboardId: " + $leaderboardId);
+				
+		if($error) trace("loadDefaultLeaderboardId: " + $error);
+	});
+}
+
 
 ```
 
 # AIR .xml manifest
 ```xml
-
+<!--
+Add Entitlements based on your iOS app .mobileprovision file.
+Read the "Requirements" section below to learn more about this.
+-->
 
 
 
@@ -42,6 +83,21 @@ Embedding the ANE:
 # Requirements 
 1. iOS 10+
 2. AIR SDK 32+
+3. Go to your Apple developer console and activate *iCloud* for your app ID:  
+
+![iCloud](https://myflashlab.github.io/resources/iCloudActivation.jpg)
+
+4. Regenerate your *.mobileprovision* files and download them. Open it with a text editor and look for the key ```<key>Entitlements</key>```. Add the Entitlements values to your manifest .xml file similar to what you see in the [demo sample project](https://github.com/myflashlab/GameCenter-ANE/blob/master/AIR/Main-app.xml#L34).
+
+5. While copying the Entitlements, make sure that the value for the key ```<key>com.apple.developer.icloud-services</key>``` is not ```<string>*</string>```. Make sure its value is like below:
+
+```xml
+<key>com.apple.developer.icloud-services</key>
+<array>
+  <string>CloudDocuments</string>
+  <string>CloudKit</string>
+</array>
+```
 
 # Commercial Version
 Only available through [ANELAB Software](https://github.com/myflashlab/ANE-LAB/)
